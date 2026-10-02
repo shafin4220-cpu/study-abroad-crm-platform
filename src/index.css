@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #1C1C28;
+  --bg-deep: #14141E;
+  --accent: #1EC1CB;
+  --accent-hover: #19abb4;
+  --accent-soft: rgba(30, 193, 203, 0.14);
+  --accent-glow: rgba(30, 193, 203, 0.35);
+  --glass-fill: rgba(255, 255, 255, 0.05);
+  --glass-fill-strong: rgba(255, 255, 255, 0.09);
+  --glass-fill-elevated: rgba(28, 28, 40, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --glass-border-strong: rgba(255, 255, 255, 0.20);
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.62);
+  --text-muted: rgba(255, 255, 255, 0.40);
+  
+  /* Status indicators - soft and desaturated */
+  --status-mint: #4ADE80;
+  --status-mint-soft: rgba(74, 222, 128, 0.15);
+  --status-amber: #FBBF24;
+  --status-amber-soft: rgba(251, 191, 36, 0.15);
+  --status-coral: #F87171;
+  --status-coral-soft: rgba(248, 113, 113, 0.15);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.font-bn {
+  font-family: 'Hind Siliguri', 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Glass card styling */
+.glass-panel {
+  background: var(--glass-fill);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 8px 32px rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+/* Ensure no sweep, shine, shimmer or gradient overlay pseudo-elements */
+.glass-panel::before,
+.glass-panel::after,
+.glass-modal::before,
+.glass-modal::after {
+  content: none !important;
+  display: none !important;
+}
+
+.glass-panel-hoverable:hover {
+  transform: translateY(-2px);
+  border-color: rgba(30, 193, 203, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 36px rgba(0, 0, 0, 0.45), 0 0 24px rgba(30, 193, 203, 0.12);
+}
+
+.glass-modal {
+  background: rgba(24, 24, 36, 0.88);
+  backdrop-filter: blur(28px) saturate(150%);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 24px 64px rgba(0, 0, 0, 0.65), 0 0 40px rgba(30, 193, 203, 0.12);
+  border-radius: 20px;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  transition: all 0.15s ease-in-out;
+}
+
+.glass-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 193, 203, 0.25);
+}
+
+/* Simple 150ms opacity page fade-in (pure opacity, zero translation/movement) */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-page-fade {
+  animation: pageFadeIn 150ms ease-out forwards;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Tabular figures for data metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "EduFlow — Education Consultancy CRM & Booking",
+  "description": "Purpose-built CRM and booking platform for study-abroad and education consultancies in South Asia, tracking student pipelines, document checklists, WhatsApp workflows, and counselor performance.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -21,6 +21,7 @@ import {
 import { formatBDT, formatNumber } from '../i18n';
 import { LeadScore } from '../types';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const LeadsView: React.FC = () => {
   const {
@@ -175,43 +176,49 @@ export const LeadsView: React.FC = () => {
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Country */}
-          <select
-            value={selectedCountry}
-            onChange={(e) => setSelectedCountry(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">{lang === 'bn' ? 'সকল দেশ' : 'All Countries'}</option>
-            <option value="UK">🇬🇧 UK</option>
-            <option value="Canada">🇨🇦 Canada</option>
-            <option value="USA">🇺🇸 USA</option>
-            <option value="Australia">🇦🇺 Australia</option>
-            <option value="Germany">🇩🇪 Germany</option>
-            <option value="Malaysia">🇲🇾 Malaysia</option>
-          </select>
+          <div className="min-w-[130px]">
+            <CustomSelect
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">{lang === 'bn' ? 'সকল দেশ' : 'All Countries'}</option>
+              <option value="UK">🇬🇧 UK</option>
+              <option value="Canada">🇨🇦 Canada</option>
+              <option value="USA">🇺🇸 USA</option>
+              <option value="Australia">🇦🇺 Australia</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="Malaysia">🇲🇾 Malaysia</option>
+            </CustomSelect>
+          </div>
 
           {/* Counselor */}
-          <select
-            value={selectedCounselor}
-            onChange={(e) => setSelectedCounselor(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">{lang === 'bn' ? 'সকল কাউন্সেলর' : 'All Counselors'}</option>
-            {users.filter(u => u.role === 'counselor').map((u) => (
-              <option key={u.id} value={u.id}>{u.name}</option>
-            ))}
-          </select>
+          <div className="min-w-[140px]">
+            <CustomSelect
+              value={selectedCounselor}
+              onChange={(e) => setSelectedCounselor(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">{lang === 'bn' ? 'সকল কাউন্সেলর' : 'All Counselors'}</option>
+              {users.filter(u => u.role === 'counselor').map((u) => (
+                <option key={u.id} value={u.id}>{u.name}</option>
+              ))}
+            </CustomSelect>
+          </div>
 
           {/* Lead Score */}
-          <select
-            value={selectedScore}
-            onChange={(e) => setSelectedScore(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">{lang === 'bn' ? 'সকল স্কোর' : 'All Scores'}</option>
-            <option value="hot">🔥 Hot</option>
-            <option value="warm">⚡ Warm</option>
-            <option value="cold">❄️ Cold</option>
-          </select>
+          <div className="min-w-[110px]">
+            <CustomSelect
+              value={selectedScore}
+              onChange={(e) => setSelectedScore(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">{lang === 'bn' ? 'সকল স্কোর' : 'All Scores'}</option>
+              <option value="hot">🔥 Hot</option>
+              <option value="warm">⚡ Warm</option>
+              <option value="cold">❄️ Cold</option>
+            </CustomSelect>
+          </div>
         </div>
       </div>
 
@@ -226,19 +233,21 @@ export const LeadsView: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <select
-              value={bulkCounselorId}
-              onChange={(e) => setBulkCounselorId(e.target.value)}
-              className="glass-input px-3 py-1.5 text-xs bg-[#1C1C28]"
-            >
-              <option value="">Select Counselor to Assign...</option>
-              {users.filter(u => u.role === 'counselor').map(u => (
-                <option key={u.id} value={u.id}>{u.name}</option>
-              ))}
-            </select>
+            <div className="min-w-[200px]">
+              <CustomSelect
+                value={bulkCounselorId}
+                onChange={(e) => setBulkCounselorId(e.target.value)}
+                className="glass-input px-3 py-1.5 text-xs"
+              >
+                <option value="">Select Counselor to Assign...</option>
+                {users.filter(u => u.role === 'counselor').map(u => (
+                  <option key={u.id} value={u.id}>{u.name}</option>
+                ))}
+              </CustomSelect>
+            </div>
             <button
               onClick={handleBulkAssign}
-              className="px-3 py-1.5 rounded-lg bg-[#1EC1CB] text-[#1C1C28] font-bold text-xs transition"
+              className="px-3 py-1.5 rounded-lg bg-[#1EC1CB] text-[#1C1C28] font-bold text-xs transition shrink-0"
             >
               Reassign Leads
             </button>

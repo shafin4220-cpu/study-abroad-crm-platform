@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { Appointment } from '../types';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const AppointmentsView: React.FC = () => {
   const {
@@ -78,16 +79,18 @@ export const AppointmentsView: React.FC = () => {
         description={lang === 'bn' ? 'অফিস মিটিং ও জুম কনসালটেশন (ডাবল-বুকিং প্রতিরোধ সক্রিয়)' : 'In-office, phone, and Zoom bookings with instant double-booking prevention'}
         badge={`${filteredAppointments.length} Bookings`}
       >
-        <select
-          value={filterCounselor}
-          onChange={(e) => setFilterCounselor(e.target.value)}
-          className="glass-input px-3 py-2 text-xs bg-[#1C1C28]"
-        >
-          <option value="All">All Counselors</option>
-          {users.filter(u => u.role === 'counselor').map(u => (
-            <option key={u.id} value={u.id}>{u.name}</option>
-          ))}
-        </select>
+        <div className="min-w-[170px]">
+          <CustomSelect
+            value={filterCounselor}
+            onChange={(e) => setFilterCounselor(e.target.value)}
+            className="glass-input px-3 py-2 text-xs"
+          >
+            <option value="All">All Counselors</option>
+            {users.filter(u => u.role === 'counselor').map(u => (
+              <option key={u.id} value={u.id}>{u.name}</option>
+            ))}
+          </CustomSelect>
+        </div>
 
         <button
           onClick={() => setIsModalOpen(true)}
@@ -205,28 +208,28 @@ export const AppointmentsView: React.FC = () => {
             <form onSubmit={handleCreateAppointment} className="mt-4 space-y-4 text-xs">
               <div>
                 <label className="block text-white/70 mb-1 font-semibold">Select Student</label>
-                <select
+                <CustomSelect
                   value={studentId}
                   onChange={(e) => setStudentId(e.target.value)}
-                  className="w-full glass-input px-3 py-2 bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2 text-xs"
                 >
                   {students.slice(0, 20).map((s) => (
                     <option key={s.id} value={s.id}>{s.name} ({s.phone})</option>
                   ))}
-                </select>
+                </CustomSelect>
               </div>
 
               <div>
                 <label className="block text-white/70 mb-1 font-semibold">Assigned Counselor</label>
-                <select
+                <CustomSelect
                   value={counselorId}
                   onChange={(e) => setCounselorId(e.target.value)}
-                  className="w-full glass-input px-3 py-2 bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2 text-xs"
                 >
                   {users.filter(u => u.role === 'counselor').map((u) => (
                     <option key={u.id} value={u.id}>{u.name}</option>
                   ))}
-                </select>
+                </CustomSelect>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
@@ -241,17 +244,17 @@ export const AppointmentsView: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-white/70 mb-1 font-semibold">Time Slot</label>
-                  <select
+                  <CustomSelect
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
-                    className="w-full glass-input px-3 py-2 bg-[#1C1C28]"
+                    className="w-full glass-input px-3 py-2 text-xs"
                   >
                     <option value="10:30 AM">10:30 AM</option>
                     <option value="11:30 AM">11:30 AM</option>
                     <option value="02:00 PM">02:00 PM</option>
                     <option value="03:30 PM">03:30 PM</option>
                     <option value="04:30 PM">04:30 PM</option>
-                  </select>
+                  </CustomSelect>
                 </div>
               </div>
 

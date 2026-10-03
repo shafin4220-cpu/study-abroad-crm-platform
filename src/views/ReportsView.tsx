@@ -16,6 +16,7 @@ import {
 import { mockCounselorPerformance } from '../data/mockData';
 import { formatBDT, formatNumber } from '../i18n';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const ReportsView: React.FC = () => {
   const { lang, t, showToast, logAudit, students } = useApp();
@@ -50,15 +51,17 @@ export const ReportsView: React.FC = () => {
           : 'Conversion velocity, visa approval rates, and revenue contributions per advisor'}
         badge="Performance Leaderboard"
       >
-        <select
-          value={dateRange}
-          onChange={(e) => setDateRange(e.target.value)}
-          className="glass-input px-3 py-2 text-xs bg-[#1C1C28]"
-        >
-          <option value="Jan 2026 - Sep 2026">Jan 2026 - Present (Full Year)</option>
-          <option value="Jul 2026 - Sep 2026">Q3 (Jul - Sep 2026)</option>
-          <option value="Sep 2026">Current Month (Sep 2026)</option>
-        </select>
+        <div className="min-w-[210px]">
+          <CustomSelect
+            value={dateRange}
+            onChange={(e) => setDateRange(e.target.value)}
+            className="glass-input px-3 py-2 text-xs"
+          >
+            <option value="Jan 2026 - Sep 2026">Jan 2026 - Present (Full Year)</option>
+            <option value="Jul 2026 - Sep 2026">Q3 (Jul - Sep 2026)</option>
+            <option value="Sep 2026">Current Month (Sep 2026)</option>
+          </CustomSelect>
+        </div>
 
         <button
           onClick={handleExport}

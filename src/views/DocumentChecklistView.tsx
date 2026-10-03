@@ -19,6 +19,7 @@ import {
 import { DocumentStatus } from '../types';
 import { formatNumber } from '../i18n';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const DocumentChecklistView: React.FC = () => {
   const {
@@ -102,33 +103,37 @@ export const DocumentChecklistView: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-white/40">Student:</span>
-          <select
-            value={selectedStudentFilter}
-            onChange={(e) => setSelectedStudentFilter(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">All Students</option>
-            {students.map((s) => (
-              <option key={s.id} value={s.id}>{s.name} ({s.targetCountry})</option>
-            ))}
-          </select>
+          <span className="text-white/40 shrink-0">Student:</span>
+          <div className="min-w-[170px]">
+            <CustomSelect
+              value={selectedStudentFilter}
+              onChange={(e) => setSelectedStudentFilter(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Students</option>
+              {students.map((s) => (
+                <option key={s.id} value={s.id}>{s.name} ({s.targetCountry})</option>
+              ))}
+            </CustomSelect>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-white/40">Status:</span>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">All Statuses</option>
-            <option value="verified">Verified (যাচাইকৃত)</option>
-            <option value="received">Received (প্রাপ্ত)</option>
-            <option value="requested">Requested (অনুরোধ পাঠানো)</option>
-            <option value="not_requested">Not Requested (অপেক্ষমাণ)</option>
-            <option value="rejected">Rejected (বাতিল)</option>
-          </select>
+          <span className="text-white/40 shrink-0">Status:</span>
+          <div className="min-w-[160px]">
+            <CustomSelect
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Statuses</option>
+              <option value="verified">Verified (যাচাইকৃত)</option>
+              <option value="received">Received (প্রাপ্ত)</option>
+              <option value="requested">Requested (অনুরোধ পাঠানো)</option>
+              <option value="not_requested">Not Requested (অপেক্ষমাণ)</option>
+              <option value="rejected">Rejected (বাতিল)</option>
+            </CustomSelect>
+          </div>
         </div>
       </div>
 
@@ -198,22 +203,24 @@ export const DocumentChecklistView: React.FC = () => {
 
                     {/* 4. Status Selector */}
                     <td className="p-3.5">
-                      <select
-                        value={doc.status}
-                        onChange={(e) => updateDocumentStatus(student.id, doc.id, e.target.value as DocumentStatus)}
-                        className={`text-xs px-2.5 py-1 rounded-lg border font-semibold bg-[#1C1C28] cursor-pointer ${
-                          doc.status === 'verified' ? 'text-emerald-400 border-emerald-500/40' :
-                          doc.status === 'received' ? 'text-[#1EC1CB] border-[#1EC1CB]/40' :
-                          doc.status === 'rejected' ? 'text-red-400 border-red-500/40' :
-                          'text-white/60 border-white/10'
-                        }`}
-                      >
-                        <option value="not_requested">{t('status_not_requested')}</option>
-                        <option value="requested">{t('status_requested')}</option>
-                        <option value="received">{t('status_received')}</option>
-                        <option value="verified">{t('status_verified')}</option>
-                        <option value="rejected">{t('status_rejected')}</option>
-                      </select>
+                      <div className="min-w-[130px]">
+                        <CustomSelect
+                          value={doc.status}
+                          onChange={(e) => updateDocumentStatus(student.id, doc.id, e.target.value as DocumentStatus)}
+                          className={`text-xs px-2.5 py-1 rounded-lg border font-semibold ${
+                            doc.status === 'verified' ? 'text-emerald-400 border-emerald-500/40' :
+                            doc.status === 'received' ? 'text-[#1EC1CB] border-[#1EC1CB]/40' :
+                            doc.status === 'rejected' ? 'text-red-400 border-red-500/40' :
+                            'text-white/60 border-white/10'
+                          }`}
+                        >
+                          <option value="not_requested">{t('status_not_requested')}</option>
+                          <option value="requested">{t('status_requested')}</option>
+                          <option value="received">{t('status_received')}</option>
+                          <option value="verified">{t('status_verified')}</option>
+                          <option value="rejected">{t('status_rejected')}</option>
+                        </CustomSelect>
+                      </div>
                     </td>
 
                     {/* 5. Actions */}

@@ -14,6 +14,7 @@ import {
   Building
 } from 'lucide-react';
 import { LeadScore } from '../types';
+import { CustomSelect } from './CustomSelect';
 
 export const QuickAddLeadDrawer: React.FC = () => {
   const {
@@ -176,10 +177,10 @@ export const QuickAddLeadDrawer: React.FC = () => {
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'শহর / জেলা' : 'Home City'}
                 </label>
-                <select
+                <CustomSelect
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   <option value="Dhaka">Dhaka (ঢাকা)</option>
                   <option value="Chattogram">Chattogram (চট্টগ্রাম)</option>
@@ -187,7 +188,7 @@ export const QuickAddLeadDrawer: React.FC = () => {
                   <option value="Rajshahi">Rajshahi (রাজশাহী)</option>
                   <option value="Khulna">Khulna (খুলনা)</option>
                   <option value="Barishal">Barishal (বরিশাল)</option>
-                </select>
+                </CustomSelect>
               </div>
             </div>
 
@@ -197,32 +198,32 @@ export const QuickAddLeadDrawer: React.FC = () => {
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'কাঙ্ক্ষিত দেশ' : 'Target Country'}
                 </label>
-                <select
+                <CustomSelect
                   value={targetCountry}
                   onChange={(e) => setTargetCountry(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   {countries.map((c) => (
                     <option key={c.name} value={c.name}>
                       {c.flag} {c.name}
                     </option>
                   ))}
-                </select>
+                </CustomSelect>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'ডিগ্রির স্তর' : 'Degree Level'}
                 </label>
-                <select
+                <CustomSelect
                   value={degreeLevel}
                   onChange={(e) => setDegreeLevel(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   <option value="Bachelor">Bachelor (অনার্স)</option>
                   <option value="Master">Master (মাস্টার্স)</option>
                   <option value="Diploma">Postgraduate Diploma</option>
                   <option value="PhD">Doctorate (PhD)</option>
-                </select>
+                </CustomSelect>
               </div>
             </div>
 
@@ -232,16 +233,16 @@ export const QuickAddLeadDrawer: React.FC = () => {
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'কাঙ্ক্ষিত সেশন' : 'Target Intake'}
                 </label>
-                <select
+                <CustomSelect
                   value={targetIntake}
                   onChange={(e) => setTargetIntake(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   <option value="Jan 2027">Jan / Feb 2027</option>
                   <option value="May 2027">May / Summer 2027</option>
                   <option value="Sep 2026">Sep / Fall 2026</option>
                   <option value="Nov 2026">Nov / Winter 2026</option>
-                </select>
+                </CustomSelect>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-white/70 mb-1">
@@ -263,33 +264,33 @@ export const QuickAddLeadDrawer: React.FC = () => {
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'তথ্যের উৎস' : 'Lead Source'}
                 </label>
-                <select
+                <CustomSelect
                   value={source}
                   onChange={(e) => setSource(e.target.value as any)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   <option value="Facebook">Facebook Ads</option>
                   <option value="WhatsApp">WhatsApp Inbound</option>
                   <option value="Walk-in">Walk-in to Office</option>
                   <option value="Referral">Student Referral</option>
                   <option value="Website">Website Form</option>
-                </select>
+                </CustomSelect>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-white/70 mb-1">
                   {lang === 'bn' ? 'কাউন্সেলর নিয়োগ' : 'Assign Counselor'}
                 </label>
-                <select
+                <CustomSelect
                   value={counselorId}
                   onChange={(e) => setCounselorId(e.target.value)}
-                  className="w-full glass-input px-3 py-2.5 text-sm bg-[#1C1C28]"
+                  className="w-full glass-input px-3 py-2.5 text-sm"
                 >
                   {users.filter(u => u.role === 'counselor' || u.role === 'admin').map((u) => (
                     <option key={u.id} value={u.id}>
                       {u.name} ({u.assignedCountries.join(', ')})
                     </option>
                   ))}
-                </select>
+                </CustomSelect>
               </div>
             </div>
 

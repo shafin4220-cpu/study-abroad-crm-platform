@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { VisaStatus } from '../types';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const VisaTrackerView: React.FC = () => {
   const { students, setSelectedStudentId, updateStudentStage, triggerConfetti, lang, t, showToast } = useApp();
@@ -62,17 +63,19 @@ export const VisaTrackerView: React.FC = () => {
       >
         <div className="flex items-center gap-2 text-xs">
           <span className="text-white/40">Status:</span>
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">All Visa Cases</option>
-            <option value="interview_scheduled">Interview Scheduled</option>
-            <option value="biometrics_done">Biometrics Done</option>
-            <option value="appointment_booked">Appointment Booked</option>
-            <option value="approved">Approved (ভিসাপ্রাপ্ত)</option>
-          </select>
+          <div className="min-w-[180px]">
+            <CustomSelect
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Visa Cases</option>
+              <option value="interview_scheduled">Interview Scheduled</option>
+              <option value="biometrics_done">Biometrics Done</option>
+              <option value="appointment_booked">Appointment Booked</option>
+              <option value="approved">Approved (ভিসাপ্রাপ্ত)</option>
+            </CustomSelect>
+          </div>
         </div>
       </PageHeader>
 

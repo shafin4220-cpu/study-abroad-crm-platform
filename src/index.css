@@ -89,6 +89,16 @@ body {
   box-shadow: 0 0 0 3px rgba(30, 193, 203, 0.25);
 }
 
+/* Global safety CSS so no native dropdown can show white-on-white */
+select, select option {
+  background-color: #1C1C28;
+  color: #FFFFFF;
+}
+
+select {
+  color-scheme: dark;
+}
+
 /* Simple 150ms opacity page fade-in (pure opacity, zero translation/movement) */
 @keyframes pageFadeIn {
   from {

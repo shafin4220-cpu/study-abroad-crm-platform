@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { PipelineStage, DocumentStatus } from '../types';
 import { formatBDT, formatNumber } from '../i18n';
+import { CustomSelect } from './CustomSelect';
 
 export const StudentProfileModal: React.FC = () => {
   const {
@@ -449,11 +450,11 @@ export const StudentProfileModal: React.FC = () => {
                         </div>
 
                         {/* Status selector */}
-                        <div className="flex items-center gap-2 shrink-0">
-                          <select
+                        <div className="flex items-center gap-2 shrink-0 min-w-[130px]">
+                          <CustomSelect
                             value={doc.status}
                             onChange={(e) => updateDocumentStatus(student.id, doc.id, e.target.value as DocumentStatus)}
-                            className={`text-xs px-2.5 py-1.5 rounded-lg border font-semibold bg-[#1C1C28] cursor-pointer ${
+                            className={`text-xs px-2.5 py-1.5 rounded-lg border font-semibold ${
                               doc.status === 'verified' ? 'text-emerald-400 border-emerald-500/40' :
                               doc.status === 'received' ? 'text-[#1EC1CB] border-[#1EC1CB]/40' :
                               doc.status === 'rejected' ? 'text-red-400 border-red-500/40' :
@@ -465,7 +466,7 @@ export const StudentProfileModal: React.FC = () => {
                             <option value="received">{t('status_received')}</option>
                             <option value="verified">{t('status_verified')}</option>
                             <option value="rejected">{t('status_rejected')}</option>
-                          </select>
+                          </CustomSelect>
                         </div>
                       </div>
                     );

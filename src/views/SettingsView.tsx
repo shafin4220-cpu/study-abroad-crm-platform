@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { UserRole } from '../types';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const SettingsView: React.FC = () => {
   const {
@@ -190,15 +191,17 @@ export const SettingsView: React.FC = () => {
               <p className="text-xs text-white/60">
                 Automatically lock screen if counselor leaves their desk without locking terminal:
               </p>
-              <select
-                value={sessionTimeout}
-                onChange={(e) => setSessionTimeout(e.target.value)}
-                className="glass-input px-3 py-1.5 text-xs bg-[#1C1C28]"
-              >
-                <option value="15">15 Minutes of Inactivity</option>
-                <option value="30">30 Minutes of Inactivity</option>
-                <option value="60">1 Hour of Inactivity</option>
-              </select>
+              <div className="max-w-[260px]">
+                <CustomSelect
+                  value={sessionTimeout}
+                  onChange={(e) => setSessionTimeout(e.target.value)}
+                  className="glass-input px-3 py-1.5 text-xs"
+                >
+                  <option value="15">15 Minutes of Inactivity</option>
+                  <option value="30">30 Minutes of Inactivity</option>
+                  <option value="60">1 Hour of Inactivity</option>
+                </CustomSelect>
+              </div>
             </div>
           </div>
 

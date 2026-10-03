@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { ApplicationStatus } from '../types';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const UniversityApplicationsView: React.FC = () => {
   const { students, setSelectedStudentId, lang, t, showToast } = useApp();
@@ -77,18 +78,20 @@ export const UniversityApplicationsView: React.FC = () => {
 
         <div className="flex items-center gap-2">
           <span className="text-white/40">Status:</span>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="glass-input px-3 py-1.5 bg-[#1C1C28]"
-          >
-            <option value="All">All Statuses</option>
-            <option value="unconditional_offer">Unconditional Offer (নিশ্চিত)</option>
-            <option value="conditional_offer">Conditional Offer (শর্তসাপেক্ষ)</option>
-            <option value="under_review">Under Review (পর্যালোচনাধীন)</option>
-            <option value="submitted">Submitted (দাখিলকৃত)</option>
-            <option value="draft">Draft (খসড়া)</option>
-          </select>
+          <div className="min-w-[190px]">
+            <CustomSelect
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Statuses</option>
+              <option value="unconditional_offer">Unconditional Offer (নিশ্চিত)</option>
+              <option value="conditional_offer">Conditional Offer (শর্তসাপেক্ষ)</option>
+              <option value="under_review">Under Review (পর্যালোচনাধীন)</option>
+              <option value="submitted">Submitted (দাখিলকৃত)</option>
+              <option value="draft">Draft (খসড়া)</option>
+            </CustomSelect>
+          </div>
         </div>
       </div>
 

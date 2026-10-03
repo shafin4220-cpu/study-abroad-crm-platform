@@ -15,6 +15,7 @@ import {
 import { PipelineStage } from '../types';
 import { formatNumber } from '../i18n';
 import { PageHeader } from '../components/PageHeader';
+import { CustomSelect } from '../components/CustomSelect';
 
 export const PipelineView: React.FC = () => {
   const {
@@ -93,33 +94,37 @@ export const PipelineView: React.FC = () => {
       >
         <div className="flex items-center gap-2">
           <span className="text-white/40 text-xs">Counselor:</span>
-          <select
-            value={filterCounselor}
-            onChange={(e) => setFilterCounselor(e.target.value)}
-            className="glass-input px-3 py-1.5 text-xs bg-[#1C1C28]"
-          >
-            <option value="All">All Counselors</option>
-            {users.filter(u => u.role === 'counselor').map(u => (
-              <option key={u.id} value={u.id}>{u.name}</option>
-            ))}
-          </select>
+          <div className="min-w-[150px]">
+            <CustomSelect
+              value={filterCounselor}
+              onChange={(e) => setFilterCounselor(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Counselors</option>
+              {users.filter(u => u.role === 'counselor').map(u => (
+                <option key={u.id} value={u.id}>{u.name}</option>
+              ))}
+            </CustomSelect>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-white/40 text-xs">Country:</span>
-          <select
-            value={filterCountry}
-            onChange={(e) => setFilterCountry(e.target.value)}
-            className="glass-input px-3 py-1.5 text-xs bg-[#1C1C28]"
-          >
-            <option value="All">All Countries</option>
-            <option value="UK">🇬🇧 UK</option>
-            <option value="Canada">🇨🇦 Canada</option>
-            <option value="USA">🇺🇸 USA</option>
-            <option value="Australia">🇦🇺 Australia</option>
-            <option value="Germany">🇩🇪 Germany</option>
-            <option value="Malaysia">🇲🇾 Malaysia</option>
-          </select>
+          <div className="min-w-[140px]">
+            <CustomSelect
+              value={filterCountry}
+              onChange={(e) => setFilterCountry(e.target.value)}
+              className="glass-input px-3 py-1.5 text-xs"
+            >
+              <option value="All">All Countries</option>
+              <option value="UK">🇬🇧 UK</option>
+              <option value="Canada">🇨🇦 Canada</option>
+              <option value="USA">🇺🇸 USA</option>
+              <option value="Australia">🇦🇺 Australia</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="Malaysia">🇲🇾 Malaysia</option>
+            </CustomSelect>
+          </div>
         </div>
       </PageHeader>
 
